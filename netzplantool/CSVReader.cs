@@ -11,6 +11,7 @@ namespace netzplantool
     {
         public static List<Node> ReadCSV(string filePath)
         {
+            // Lese CSV-Datei und erstelle Liste von Knoten
             List<Node> nodes = new List<Node>();
             using (var reader = new StreamReader(filePath))
             {

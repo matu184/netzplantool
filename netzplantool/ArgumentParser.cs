@@ -9,17 +9,18 @@ namespace netzplantool
 {
     internal class ArgumentParser
     {
+        // Argumente
         private string _inputFilePath;
         private string _outputFilePath;
-
+        // Konstruktor
         public ArgumentParser(string[] args)
         {
             ParseArguments(args);
         }
-
+        // Getter
         public string InputFilePath => _inputFilePath;
         public string OutputFilePath => _outputFilePath;
-
+        // Argumente parsen
         private void ParseArguments(string[] args)
         {
             for (int i = 0; i < args.Length; i++)
@@ -64,14 +65,14 @@ namespace netzplantool
                         break;
                 }
             }
-
+            // Überprüfe Eingabedatei
             if (string.IsNullOrEmpty(_inputFilePath))
             {
                 Console.WriteLine("Fehler: Eingabedatei muss angegeben werden.");
                 PrintHelp();
                 Environment.Exit(1);
             }
-
+            // Überprüfe Ausgabedatei
             if (string.IsNullOrEmpty(_outputFilePath))
             {
                 string inputDirectory = Path.GetDirectoryName(_inputFilePath);
@@ -79,7 +80,7 @@ namespace netzplantool
                 _outputFilePath = Path.Combine(inputDirectory, $"{inputFileName}.png");
             }
         }
-
+        // Hilfe anzeigen
         private void PrintHelp()
         {
             Console.WriteLine("netzplantool -i <input-file> [-o <output-file>]");
@@ -87,7 +88,7 @@ namespace netzplantool
             Console.WriteLine();
             Console.WriteLine("Optionen:");
             Console.WriteLine("  -i, --input <input-file>   Pfad zur Eingabedatei (CSV)");
-            Console.WriteLine("  -o, --output <output-file> Pfad zur Ausgabedatei (PNG)");
+            Console.WriteLine("  -o, --output <output-file> Pfad zur Ausgabedatei (PNG, JPG)");
             Console.WriteLine("  -h, --help                 Zeigt diese Hilfe an");
         }
     }
